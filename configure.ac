@@ -35,16 +35,6 @@ AC_ARG_WITH([gflags],
     [],
     [with_gflags=check])
 
-if test "x$with_gflags" != "xno"; then
-  PKG_CHECK_MODULES(
-    [gflags],
-    [libgflags],
-    [AC_DEFINE([HAVE_GFLAGS], [1], [Use the gflags package for command-line parsing.])],
-    [if test "x$with_gflags" != "xcheck"; then
-      AC_MSG_FAILURE([--with-gflags was given, but test for gflags failed])
-    fi])
-fi
-
 # See if we have __builtin_expect.
 # TODO: Use AC_CACHE.
 AC_MSG_CHECKING([if the compiler supports __builtin_expect])
