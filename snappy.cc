@@ -63,6 +63,9 @@ using internal::kMaximumTagLength;
 // input. Of course, it doesn't hurt if the hash function is reasonably fast
 // either, as it gets called a lot.
 static inline uint32 HashBytes(uint32 bytes, int shift) {
+#if defined(SNAPPY_IS_BIG_ENDIAN)
+  bytes = bswap_32(bytes);
+#endif
   uint32 kMul = 0x1e35a7bd;
   return (bytes * kMul) >> shift;
 }
